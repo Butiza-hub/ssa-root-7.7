@@ -1,0 +1,145 @@
+/* ===============================
+   GLOBAL
+   =============================== */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #000;
+  color: #eaeaea;
+  font-family: "Segoe UI", Tahoma, sans-serif;
+}
+
+/* ===============================
+   HEADER
+   =============================== */
+#system-title {
+  font-size: 40px;
+  font-weight: 700;
+  color: #00ff00;
+  text-align: center;
+  letter-spacing: 0.15em;
+  margin: 0;
+  padding: 10px 0;
+  text-shadow: 0 0 5px #00ff00, 0 0 15px rgba(0,255,0,0.6);
+}
+
+/* ===============================
+   TOP BAR
+   =============================== */
+#top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px;
+  border-bottom: 1px solid rgba(0,180,255,0.3);
+}
+
+#controls {
+  display: flex;
+  gap: 8px;
+}
+
+/* ===============================
+   ARM / DISARM BUTTONS
+   =============================== */
+#controls button {
+  background-color: #3a3f4b;
+  color: #eaeaea;
+  border: 1px solid rgba(0,180,255,0.4);
+  border-radius: 6px;
+  padding: 6px 14px;
+  font-size: 14px;
+  cursor: pointer;
+  box-shadow: 0 0 6px rgba(0,180,255,0.4);
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+#controls button:hover {
+  background-color: #4a5060;
+  transform: translateY(-1px);
+}
+
+/* ===============================
+   MAIN LAYOUT – DESKTOP (ROOT 7.7)
+   =============================== */
+#main {
+  display: flex;
+  gap: 16px;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+/* ===============================
+   ZONES
+   =============================== */
+#zones-area {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  flex: 2;
+}
+
+.zone {
+  background-color: #272b36;
+  border-radius: 8px;
+  padding: 12px;
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid rgba(0,180,255,0.3);
+  box-shadow:
+    0 0 12px rgba(0,180,255,0.5),
+    0 2px 6px rgba(0,0,0,0.4);
+  transition: transform 0.15s ease, background-color 0.2s ease;
+}
+
+.zone:hover {
+  transform: translateY(-2px);
+  background-color: #2d3240;
+}
+
+/* ===============================
+   SYSTEM LOG
+   =============================== */
+#system-log {
+  flex: 1;
+  background-color: #272b36;
+  border-radius: 8px;
+  padding: 12px;
+  overflow-y: auto;
+  max-height: calc(100vh - 220px);
+  border: 1px solid rgba(0,180,255,0.3);
+}
+
+/* ===============================
+   MOBILE – LANDSCAPE ONLY
+   =============================== */
+@media (max-width: 480px) and (orientation: landscape) {
+
+  body {
+    overflow-y: auto;
+  }
+
+  #main {
+    display: grid;
+    grid-template-columns: 1fr 2fr; /* log wider */
+    gap: 12px;
+    height: auto;
+  }
+
+  #zones-area {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+  }
+
+  .zone {
+    padding: 6px 4px;
+    font-size: 11px;
+    min-height: 42px;
+  }
+
+  #system-log {
+    max-height: none;
+    font-size: 11px;
+  }
+}

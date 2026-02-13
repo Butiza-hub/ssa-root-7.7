@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Security System Administrator</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/status-help.css">
+  <link rel="stylesheet" href="css/style-mobile.css">
+</head>
+
+<body>
+
+  <!-- ================= HEADER ================= -->
+  <header id="header">
+    <h1 id="system-title">Security System Administrator</h1>
+
+    <div id="top-bar">
+      <div id="controls">
+        <button id="arm-btn">ARM</button>
+        <button id="disarm-btn">DISARM</button>
+      </div>
+
+      <div id="datetime">
+        <span id="date">--</span>
+        <span id="time">--</span>
+        <span id="status-indicator">DISARMED</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= MAIN ================= -->
+  <main id="main">
+
+    <section id="zones-area">
+      <div class="zone" data-zone="1">Zone 1 – Kitchen</div>
+      <div class="zone" data-zone="2">Zone 2 – Front Door</div>
+      <div class="zone" data-zone="3">Zone 3 – Garage Door</div>
+      <div class="zone" data-zone="4">Zone 4 – Living Room</div>
+      <div class="zone" data-zone="5">Zone 5 – Bedroom</div>
+      <div class="zone" data-zone="6">Zone 6 – Bathroom</div>
+      <div class="zone" data-zone="7">Zone 7 – Back Door</div>
+      <div class="zone" data-zone="8">Zone 8 – Patio</div>
+      <div class="zone" data-zone="9">Zone 9 – Office</div>
+      <div class="zone" data-zone="10">Zone 10 – Storage</div>
+    </section>
+
+    <aside id="system-log">
+      <h2>System Log</h2>
+      <div id="log-entries"></div>
+    </aside>
+
+  </main>
+
+  <!-- ================= SCRIPTS ================= -->
+  <script src="js/app.js"></script>
+  <script src="js/status-help.js"></script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

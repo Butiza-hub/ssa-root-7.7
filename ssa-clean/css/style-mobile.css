@@ -1,0 +1,102 @@
+/* Landscape media query trigger */
+@media only screen and (orientation: landscape) {
+    /* --------------------------
+       GLOBAL LAYOUT CONTAINERS
+    -------------------------- */
+    body {
+        width: 100vw !important;
+        height: 100vh !important;
+        overflow: hidden !important;
+        /* No visual changes - only viewport constraints */
+    }
+
+    /* Main content wrapper - enforce side-by-side layout */
+    .main-content {
+        display: flex !important;
+        flex-direction: row !important;
+        width: 100% !important;
+        height: calc(100vh - 15vh) !important; /* Account for top bar height */
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+
+    /* --------------------------
+       TOP BAR - UNMODIFIED
+       (Retain all original styles/positions)
+    -------------------------- */
+    .top-bar {
+        width: 100% !important;
+        height: 15vh !important;
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        /* All original visual styles preserved - no overrides here */
+    }
+
+    .top-left-buttons {
+        width: 30% !important;
+        margin-left: 2% !important;
+        /* Original button styling unchanged */
+    }
+
+    .top-right-indicators {
+        width: 30% !important;
+        margin-right: 2% !important;
+        text-align: right !important;
+        /* Original indicator/date styling unchanged */
+    }
+
+
+    /* --------------------------
+       ZONES PANEL - LEFT POSITION
+    -------------------------- */
+    .zones-panel {
+        width: 40% !important;
+        height: 100% !important;
+        overflow-y: auto !important;
+        padding: 2vh 2% !important;
+        /* NO VISUAL CHANGES - retain original background/shadows/borders */
+    }
+
+    /* Zone items - resize to fit panel (no style changes) */
+    .zone-item {
+        width: 100% !important;
+        margin-bottom: 3vh !important;
+        /* All original visual styles (shadows/colors/fonts) remain */
+    }
+
+
+    /* --------------------------
+       LOGS AREA - RIGHT POSITION
+    -------------------------- */
+    .logs-area {
+        width: 60% !important;
+        height: 100% !important;
+        overflow-y: auto !important;
+        padding: 2vh 2% !important;
+        /* ALL EXISTING STYLES UNCHANGED - no modifications to logs/entries */
+    }
+
+    .log-entry {
+        /* Original log styling retained entirely */
+    }
+}
+
+/* ==============================================
+   PORTRAIT ORIENTATION - REVERT TO ORIGINAL
+============================================== */
+@media only screen and (orientation: portrait) {
+    /* Reset layout to original - no changes to visual styles */
+    .main-content {
+        display: block !important;
+        width: 100% !important;
+        height: auto !important;
+    }
+
+    .zones-panel, .logs-area {
+        width: 100% !important;
+        height: auto !important;
+        overflow-y: visible !important;
+    }
+}
