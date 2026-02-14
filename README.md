@@ -1,4 +1,3 @@
-📄 README.md — SSA Root 7.7
 # Project 25 – Security System Administrator (SSA)
 
 ## Overview
@@ -16,7 +15,31 @@ This project was built as part of **Project 25**, a long-term portfolio initiati
 - Visual system status indicator
 - Event log (newest events shown first)
 - Fully modular JavaScript architecture
-- Clean, responsive UI
+- Clean UI optimized for monitoring clarity
+
+---
+
+## Platform Scope – Desktop-Optimized Dashboard
+
+SSA is intentionally designed as a **desktop-first monitoring dashboard**.
+
+The interface layout (10-zone grid, persistent event log, and real-time system indicators) is optimized for:
+
+- Laptops
+- Desktop monitors
+- Large displays
+- Control-room style environments
+
+While basic responsiveness is present, full mobile optimization was **not prioritized in this version** in order to preserve:
+
+- Dashboard clarity
+- Zone visibility at a glance
+- Log readability
+- Consistent system-state presentation
+
+This reflects a deliberate architectural decision rather than a limitation.
+
+A future version could include a mobile-adapted layout if required by product scope.
 
 ---
 
@@ -57,41 +80,4 @@ Future versions could include optional, user-initiated sound activation.
 1. Clone the repository:
    ```bash
    git clone <repository-url>
-2.	Open index.html in a modern browser
-3.	Interact with the system using the UI controls
-________________________________________
-Screenshots / Demo
-
-📸 Screenshots and/or GIFs will be added here.
-
-![Dashboard](screenshots/dashboard.png)
-
-________________________________________
-Project Status
-Completed – SSA Root 7.7
-The project is considered finished and stable.
-No further fixes are required for core functionality.
-________________________________________
-Author
-Built as part of Project 25
-Focus: Front-End Logic, State Management, and Real-World Constraints
-
----
-
-## Why this README is strong (quietly strong)
-- It **doesn’t hide** the alarm limitation
-- It **frames it professionally**
-- It shows you understand:
-  - Browser policies
-  - Shipping decisions
-  - Trade-offs
-- Reviewers will *trust* this project
-
----
-
-### Next micro-steps (when you’re ready)
-- Add screenshots / a short GIF
-- Enable GitHub Pages (optional)
-- Archive SSA and move on to **Project 25 – next system**
-
 
