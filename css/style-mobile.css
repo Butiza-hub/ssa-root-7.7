@@ -1,103 +1,132 @@
-/* Landscape media query trigger */
+/* ==============================================
+   MOBILE OPTIMIZED STYLES
+   Targets landscape & portrait - fixes scroll issues
+============================================== */
+
+/* BASE MOBILE RESETS - FIX VIEWPORT & SCROLL */
+html, body {
+    width: 100% !important;
+    height: auto !important;
+    overflow-x: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* TOP BAR - IMPROVE MOBILE ALIGNMENT */
+body > div:first-child {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 10px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+/* Buttons container */
+body > div:first-child > div:first-child {
+    display: flex !important;
+    gap: 8px !important;
+}
+
+/* Status/date container */
+body > div:first-child > div:last-child {
+    text-align: right !important;
+}
+
+/* ZONES SECTION - FIX SCROLL & POSITION */
+body > div:nth-child(2) {
+    width: 100% !important;
+    margin: 10px 0 !important;
+    padding: 0 10px !important;
+    box-sizing: border-box !important;
+}
+
+/* Make zones container scrollable if needed */
+body > div:nth-child(2) > div {
+    display: block !important;
+    max-height: 40vh !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important; /* Smooth scroll for mobile */
+    padding-right: 5px !important;
+}
+
+/* Zone items - improve mobile spacing */
+body > div:nth-child(2) > div > div {
+    margin: 6px 0 !important;
+    padding: 8px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+/* LOG & HELP SECTIONS - FIX SCROLL & LAYOUT */
+body > div:nth-child(3),
+body > div:nth-child(4) {
+    width: 100% !important;
+    margin: 10px 0 !important;
+    padding: 10px !important;
+    box-sizing: border-box !important;
+}
+
+/* Log container - make scrollable */
+body > div:nth-child(3) > div {
+    max-height: 30vh !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+}
+
+/* Help text - improve readability */
+body > div:nth-child(4) {
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+}
+
+/* ==============================================
+   LANDSCAPE-SPECIFIC LAYOUT
+   Side-by-side zones & logs
+============================================== */
 @media only screen and (orientation: landscape) {
-    /* --------------------------
-       GLOBAL LAYOUT CONTAINERS
-    -------------------------- */
-    body {
-        width: 100vw !important;
-        height: 100vh !important;
-        overflow: hidden !important;
-        /* No visual changes - only viewport constraints */
+    /* Main content wrapper */
+    body > div:nth-child(2):after {
+        content: "" !important;
+        display: table !important;
+        clear: both !important;
     }
 
-    /* Main content wrapper - enforce side-by-side layout */
-    .main-content {
-        display: flex !important;
-        flex-direction: row !important;
-        width: 100% !important;
-        height: calc(100vh - 15vh) !important; /* Account for top bar height */
-        margin: 0 !important;
-        padding: 0 !important;
+    /* Zones - left column */
+    body > div:nth-child(2) {
+        float: left !important;
+        width: 45% !important;
+        margin: 10px !important;
     }
 
-
-    /* --------------------------
-       TOP BAR - UNMODIFIED
-       (Retain all original styles/positions)
-    -------------------------- */
-    .top-bar {
-        width: 100% !important;
-        height: 15vh !important;
-        display: flex !important;
-        justify-content: space-between !important;
-        align-items: center !important;
-        /* All original visual styles preserved - no overrides here */
+    body > div:nth-child(2) > div {
+        max-height: 70vh !important;
     }
 
-    .top-left-buttons {
-        width: 30% !important;
-        margin-left: 2% !important;
-        /* Original button styling unchanged */
+    /* Logs - right column */
+    body > div:nth-child(3) {
+        float: right !important;
+        width: 45% !important;
+        margin: 10px !important;
     }
 
-    .top-right-indicators {
-        width: 30% !important;
-        margin-right: 2% !important;
-        text-align: right !important;
-        /* Original indicator/date styling unchanged */
+    body > div:nth-child(3) > div {
+        max-height: 70vh !important;
     }
 
-
-    /* --------------------------
-       ZONES PANEL - LEFT POSITION
-    -------------------------- */
-    .zones-panel {
-        width: 40% !important;
-        height: 100% !important;
-        overflow-y: auto !important;
-        padding: 2vh 2% !important;
-        /* NO VISUAL CHANGES - retain original background/shadows/borders */
-    }
-
-    /* Zone items - resize to fit panel (no style changes) */
-    .zone-item {
-        width: 100% !important;
-        margin-bottom: 3vh !important;
-        /* All original visual styles (shadows/colors/fonts) remain */
-    }
-
-
-    /* --------------------------
-       LOGS AREA - RIGHT POSITION
-    -------------------------- */
-    .logs-area {
-        width: 60% !important;
-        height: 100% !important;
-        overflow-y: auto !important;
-        padding: 2vh 2% !important;
-        /* ALL EXISTING STYLES UNCHANGED - no modifications to logs/entries */
-    }
-
-    .log-entry {
-        /* Original log styling retained entirely */
+    /* Help section - full width below */
+    body > div:nth-child(4) {
+        clear: both !important;
+        width: 95% !important;
+        margin: 10px auto !important;
     }
 }
 
 /* ==============================================
-   PORTRAIT ORIENTATION - REVERT TO ORIGINAL
+   FIX FOR TOUCH DEVICES
 ============================================== */
-@media only screen and (orientation: portrait) {
-    /* Reset layout to original - no changes to visual styles */
-    .main-content {
-        display: block !important;
-        width: 100% !important;
-        height: auto !important;
-    }
-
-    .zones-panel, .logs-area {
-        width: 100% !important;
-        height: auto !important;
-        overflow-y: visible !important;
-    }
+* {
+    -webkit-tap-highlight-color: transparent !important;
+    touch-action: manipulation !important;
 }
 
