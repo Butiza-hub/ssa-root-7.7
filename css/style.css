@@ -1,6 +1,7 @@
 /* ===============================
    GLOBAL
    =============================== */
+
 html, body {
   margin: 0;
   padding: 0;
@@ -13,6 +14,7 @@ html, body {
 /* ===============================
    HEADER
    =============================== */
+
 #system-title {
   font-size: 40px;
   font-weight: 700;
@@ -27,6 +29,7 @@ html, body {
 /* ===============================
    TOP BAR
    =============================== */
+
 #top-bar {
   display: flex;
   justify-content: space-between;
@@ -43,6 +46,7 @@ html, body {
 /* ===============================
    ARM / DISARM BUTTONS
    =============================== */
+
 #controls button {
   background-color: #3a3f4b;
   color: #eaeaea;
@@ -63,6 +67,7 @@ html, body {
 /* ===============================
    MAIN LAYOUT – DESKTOP (ROOT 7.7)
    =============================== */
+
 #main {
   display: flex;
   gap: 16px;
@@ -73,6 +78,7 @@ html, body {
 /* ===============================
    ZONES
    =============================== */
+
 #zones-area {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -99,8 +105,54 @@ html, body {
 }
 
 /* ===============================
+   ZONE 1 – KITCHEN CAMERA TEST
+   =============================== */
+
+.zone[data-zone="1"].armed {
+  position: relative;
+  overflow: hidden;
+
+  min-height: 150px;
+  padding: 0;
+
+  background-image: url("../images/zones/1. kitchen.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  color: transparent;
+}
+
+.zone[data-zone="1"].armed::after {
+  content: "Zone 1 – Kitchen";
+
+  position: absolute;
+
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  padding: 8px 6px;
+
+  background-color: var(--zone-strip-color, rgba(0, 0, 0, 0.82));
+  color: #ffffff;
+
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Triggered Kitchen:
+   keep camera image clear and change only the label strip */
+.zone[data-zone="1"].armed.triggered::after {
+  background-color: #ff9800;
+  color: #000;
+}
+
+/* ===============================
    SYSTEM LOG
    =============================== */
+
 #system-log {
   flex: 1;
   background-color: #272b36;
@@ -114,6 +166,7 @@ html, body {
 /* ===============================
    MOBILE – LANDSCAPE ONLY
    =============================== */
+
 @media (max-width: 480px) and (orientation: landscape) {
 
   body {
