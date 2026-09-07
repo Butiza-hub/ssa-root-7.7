@@ -105,17 +105,25 @@ html, body {
 }
 
 /* ===============================
-   ZONE 1 – KITCHEN CAMERA TEST
+   CAMERA ZONES – SHARED BEHAVIOR
    =============================== */
 
-.zone[data-zone="1"].armed {
+.zone[data-zone="1"].armed,
+.zone[data-zone="2"].armed,
+.zone[data-zone="3"].armed,
+.zone[data-zone="4"].armed,
+.zone[data-zone="5"].armed,
+.zone[data-zone="6"].armed,
+.zone[data-zone="7"].armed,
+.zone[data-zone="8"].armed,
+.zone[data-zone="9"].armed,
+.zone[data-zone="10"].armed {
   position: relative;
   overflow: hidden;
 
   min-height: 150px;
   padding: 0;
 
-  background-image: url("../images/zones/1. kitchen.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -123,9 +131,140 @@ html, body {
   color: transparent;
 }
 
+/* ===============================
+   ZONE 1 – KITCHEN
+   =============================== */
+
+.zone[data-zone="1"].armed {
+  background-image: url("../images/zones/1. kitchen.png");
+}
+
 .zone[data-zone="1"].armed::after {
   content: "Zone 1 – Kitchen";
+}
 
+/* ===============================
+   ZONE 2 – FRONT DOOR
+   =============================== */
+
+.zone[data-zone="2"].armed {
+  background-image: url("../images/zones/2. front-door.png");
+}
+
+.zone[data-zone="2"].armed::after {
+  content: "Zone 2 – Front Door";
+}
+
+/* ===============================
+   ZONE 3 – GARAGE DOOR
+   =============================== */
+
+.zone[data-zone="3"].armed {
+  background-image: url("../images/zones/3. garage-door.png");
+}
+
+.zone[data-zone="3"].armed::after {
+  content: "Zone 3 – Garage Door";
+}
+
+/* ===============================
+   ZONE 4 – LIVING ROOM
+   =============================== */
+
+.zone[data-zone="4"].armed {
+  background-image: url("../images/zones/4. living-room.png");
+}
+
+.zone[data-zone="4"].armed::after {
+  content: "Zone 4 – Living Room";
+}
+
+/* ===============================
+   ZONE 5 – BEDROOM
+   =============================== */
+
+.zone[data-zone="5"].armed {
+  background-image: url("../images/zones/5. bedroom.png");
+}
+
+.zone[data-zone="5"].armed::after {
+  content: "Zone 5 – Bedroom";
+}
+
+/* ===============================
+   ZONE 6 – BATHROOM
+   =============================== */
+
+.zone[data-zone="6"].armed {
+  background-image: url("../images/zones/6. bathroom.png");
+}
+
+.zone[data-zone="6"].armed::after {
+  content: "Zone 6 – Bathroom";
+}
+
+/* ===============================
+   ZONE 7 – BACK DOOR
+   =============================== */
+
+.zone[data-zone="7"].armed {
+  background-image: url("../images/zones/7. back-door.png");
+}
+
+.zone[data-zone="7"].armed::after {
+  content: "Zone 7 – Back Door";
+}
+
+/* ===============================
+   ZONE 8 – PATIO
+   =============================== */
+
+.zone[data-zone="8"].armed {
+  background-image: url("../images/zones/8. patio.png");
+}
+
+.zone[data-zone="8"].armed::after {
+  content: "Zone 8 – Patio";
+}
+
+/* ===============================
+   ZONE 9 – OFFICE
+   =============================== */
+
+.zone[data-zone="9"].armed {
+  background-image: url("../images/zones/9. office.png");
+}
+
+.zone[data-zone="9"].armed::after {
+  content: "Zone 9 – Office";
+}
+
+/* ===============================
+   ZONE 10 – STORAGE
+   =============================== */
+
+.zone[data-zone="10"].armed {
+  background-image: url("../images/zones/10. storage.png");
+}
+
+.zone[data-zone="10"].armed::after {
+  content: "Zone 10 – Storage";
+}
+
+/* ===============================
+   CAMERA ZONE LABEL STRIPS
+   =============================== */
+
+.zone[data-zone="1"].armed::after,
+.zone[data-zone="2"].armed::after,
+.zone[data-zone="3"].armed::after,
+.zone[data-zone="4"].armed::after,
+.zone[data-zone="5"].armed::after,
+.zone[data-zone="6"].armed::after,
+.zone[data-zone="7"].armed::after,
+.zone[data-zone="8"].armed::after,
+.zone[data-zone="9"].armed::after,
+.zone[data-zone="10"].armed::after {
   position: absolute;
 
   left: 0;
@@ -142,11 +281,34 @@ html, body {
   text-align: center;
 }
 
-/* Triggered Kitchen:
-   keep camera image clear and change only the label strip */
-.zone[data-zone="1"].armed.triggered::after {
-  background-color: #ff9800;
-  color: #000;
+/* ===============================
+   CONFIRMED ALARM – STRIP FLICKER
+   =============================== */
+
+.zone[data-zone="1"].armed[style*="--zone-strip-color"]::after,
+.zone[data-zone="2"].armed[style*="--zone-strip-color"]::after,
+.zone[data-zone="3"].armed[style*="--zone-strip-color"]::after,
+.zone[data-zone="4"].armed[style*="--zone-strip-color"]::after,
+.zone[data-zone="5"].armed[style*="--zone-strip-color"]::after,
+.zone[data-zone="6"].armed[style*="--zone-strip-color"]::after,
+.zone[data-zone="7"].armed[style*="--zone-strip-color"]::after,
+.zone[data-zone="8"].armed[style*="--zone-strip-color"]::after,
+.zone[data-zone="9"].armed[style*="--zone-strip-color"]::after,
+.zone[data-zone="10"].armed[style*="--zone-strip-color"]::after {
+  animation: alarm-strip-flicker 0.7s infinite;
+}
+
+@keyframes alarm-strip-flicker {
+  0%,
+  100% {
+    background-color: #ff0000;
+    box-shadow: 0 0 14px rgba(255, 0, 0, 0.95);
+  }
+
+  50% {
+    background-color: #650000;
+    box-shadow: 0 0 3px rgba(255, 0, 0, 0.25);
+  }
 }
 
 /* ===============================
