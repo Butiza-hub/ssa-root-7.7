@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Security System Administrator</title>
 
   <!-- CSS -->
@@ -16,9 +17,13 @@
 
   <!-- ================= HEADER ================= -->
   <header id="header">
-    <h1 id="system-title">Security System Administrator</h1>
+
+    <h1 id="system-title">
+      Security System Administrator
+    </h1>
 
     <div id="top-bar">
+
       <div id="controls">
         <button id="arm-btn">ARM</button>
         <button id="disarm-btn">DISARM</button>
@@ -29,28 +34,118 @@
         <span id="time">--</span>
         <span id="status-indicator">DISARMED</span>
       </div>
+
     </div>
+
   </header>
 
   <!-- ================= MAIN ================= -->
   <main id="main">
 
+    <!-- ================= ZONES ================= -->
     <section id="zones-area">
-      <div class="zone" data-zone="1">Zone 1 – Kitchen</div>
-      <div class="zone" data-zone="2">Zone 2 – Front Door</div>
-      <div class="zone" data-zone="3">Zone 3 – Garage Door</div>
-      <div class="zone" data-zone="4">Zone 4 – Living Room</div>
-      <div class="zone" data-zone="5">Zone 5 – Bedroom</div>
-      <div class="zone" data-zone="6">Zone 6 – Bathroom</div>
-      <div class="zone" data-zone="7">Zone 7 – Back Door</div>
-      <div class="zone" data-zone="8">Zone 8 – Patio</div>
-      <div class="zone" data-zone="9">Zone 9 – Office</div>
-      <div class="zone" data-zone="10">Zone 10 – Storage</div>
+
+      <div class="zone" data-zone="1">
+        Zone 1 – Kitchen
+      </div>
+
+      <div class="zone" data-zone="2">
+        Zone 2 – Front Door
+      </div>
+
+      <div class="zone" data-zone="3">
+        Zone 3 – Garage Door
+      </div>
+
+      <div class="zone" data-zone="4">
+        Zone 4 – Living Room
+      </div>
+
+      <div class="zone" data-zone="5">
+        Zone 5 – Bedroom
+      </div>
+
+      <div class="zone" data-zone="6">
+        Zone 6 – Bathroom
+      </div>
+
+      <div class="zone" data-zone="7">
+        Zone 7 – Back Door
+      </div>
+
+      <div class="zone" data-zone="8">
+        Zone 8 – Patio
+      </div>
+
+      <div class="zone" data-zone="9">
+        Zone 9 – Office
+      </div>
+
+      <div class="zone" data-zone="10">
+        Zone 10 – Storage
+      </div>
+
+      <!-- ================= SECURITY DISPLAY ================= -->
+      <section
+        id="monitoring-panel"
+        class="monitor-state-normal"
+      >
+
+        <!-- ================= BOX 1 – LIVE RADAR ================= -->
+        <div class="radar-box">
+
+          <div class="radar-section">
+
+            <div class="radar-display">
+
+              <div class="radar-ring radar-ring-1"></div>
+              <div class="radar-ring radar-ring-2"></div>
+              <div class="radar-ring radar-ring-3"></div>
+
+              <div class="radar-horizontal"></div>
+              <div class="radar-vertical"></div>
+
+              <div class="radar-sweep"></div>
+
+              <span class="radar-dot dot-1"></span>
+              <span class="radar-dot dot-2"></span>
+              <span class="radar-dot dot-3"></span>
+              <span class="radar-dot dot-4"></span>
+
+              <div class="radar-center"></div>
+
+            </div>
+
+            <div class="radar-label">
+              SECURITY SCANNER
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- ================= BOX 2 – SECURITY IMAGE ================= -->
+        <div class="security-image-box">
+
+          <img
+            src="images/monitoring/security-monitor.png"
+            alt="Security monitoring"
+            class="security-monitor-image"
+          >
+
+        </div>
+
+      </section>
+
     </section>
 
+    <!-- ================= SYSTEM LOG ================= -->
     <aside id="system-log">
+
       <h2>System Log</h2>
+
       <div id="log-entries"></div>
+
     </aside>
 
   </main>
@@ -61,23 +156,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

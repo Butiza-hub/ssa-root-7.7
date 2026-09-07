@@ -23,7 +23,9 @@ html, body {
   letter-spacing: 0.15em;
   margin: 0;
   padding: 10px 0;
-  text-shadow: 0 0 5px #00ff00, 0 0 15px rgba(0,255,0,0.6);
+  text-shadow:
+    0 0 5px #00ff00,
+    0 0 15px rgba(0,255,0,0.6);
 }
 
 /* ===============================
@@ -55,8 +57,13 @@ html, body {
   padding: 6px 14px;
   font-size: 14px;
   cursor: pointer;
-  box-shadow: 0 0 6px rgba(0,180,255,0.4);
-  transition: background-color 0.2s ease, transform 0.1s ease;
+
+  box-shadow:
+    0 0 6px rgba(0,180,255,0.4);
+
+  transition:
+    background-color 0.2s ease,
+    transform 0.1s ease;
 }
 
 #controls button:hover {
@@ -65,7 +72,7 @@ html, body {
 }
 
 /* ===============================
-   MAIN LAYOUT – DESKTOP (ROOT 7.7)
+   MAIN LAYOUT – DESKTOP
    =============================== */
 
 #main {
@@ -81,22 +88,34 @@ html, body {
 
 #zones-area {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+
+  grid-template-columns:
+    repeat(5, minmax(0, 1fr));
+
   gap: 12px;
+
   flex: 2;
+  min-width: 0;
 }
 
 .zone {
   background-color: #272b36;
   border-radius: 8px;
   padding: 12px;
+
   text-align: center;
   cursor: pointer;
-  border: 1px solid rgba(0,180,255,0.3);
+
+  border:
+    1px solid rgba(0,180,255,0.3);
+
   box-shadow:
     0 0 12px rgba(0,180,255,0.5),
     0 2px 6px rgba(0,0,0,0.4);
-  transition: transform 0.15s ease, background-color 0.2s ease;
+
+  transition:
+    transform 0.15s ease,
+    background-color 0.2s ease;
 }
 
 .zone:hover {
@@ -105,7 +124,7 @@ html, body {
 }
 
 /* ===============================
-   CAMERA ZONES – SHARED BEHAVIOR
+   CAMERA ZONES – SHARED
    =============================== */
 
 .zone[data-zone="1"].armed,
@@ -136,7 +155,8 @@ html, body {
    =============================== */
 
 .zone[data-zone="1"].armed {
-  background-image: url("../images/zones/1. kitchen.png");
+  background-image:
+    url("../images/zones/1. kitchen.png");
 }
 
 .zone[data-zone="1"].armed::after {
@@ -148,7 +168,8 @@ html, body {
    =============================== */
 
 .zone[data-zone="2"].armed {
-  background-image: url("../images/zones/2. front-door.png");
+  background-image:
+    url("../images/zones/2. front-door.png");
 }
 
 .zone[data-zone="2"].armed::after {
@@ -160,7 +181,8 @@ html, body {
    =============================== */
 
 .zone[data-zone="3"].armed {
-  background-image: url("../images/zones/3. garage-door.png");
+  background-image:
+    url("../images/zones/3. garage-door.png");
 }
 
 .zone[data-zone="3"].armed::after {
@@ -172,7 +194,8 @@ html, body {
    =============================== */
 
 .zone[data-zone="4"].armed {
-  background-image: url("../images/zones/4. living-room.png");
+  background-image:
+    url("../images/zones/4. living-room.png");
 }
 
 .zone[data-zone="4"].armed::after {
@@ -184,7 +207,8 @@ html, body {
    =============================== */
 
 .zone[data-zone="5"].armed {
-  background-image: url("../images/zones/5. bedroom.png");
+  background-image:
+    url("../images/zones/5. bedroom.png");
 }
 
 .zone[data-zone="5"].armed::after {
@@ -196,7 +220,8 @@ html, body {
    =============================== */
 
 .zone[data-zone="6"].armed {
-  background-image: url("../images/zones/6. bathroom.png");
+  background-image:
+    url("../images/zones/6. bathroom.png");
 }
 
 .zone[data-zone="6"].armed::after {
@@ -208,7 +233,8 @@ html, body {
    =============================== */
 
 .zone[data-zone="7"].armed {
-  background-image: url("../images/zones/7. back-door.png");
+  background-image:
+    url("../images/zones/7. back-door.png");
 }
 
 .zone[data-zone="7"].armed::after {
@@ -220,7 +246,8 @@ html, body {
    =============================== */
 
 .zone[data-zone="8"].armed {
-  background-image: url("../images/zones/8. patio.png");
+  background-image:
+    url("../images/zones/8. patio.png");
 }
 
 .zone[data-zone="8"].armed::after {
@@ -232,7 +259,8 @@ html, body {
    =============================== */
 
 .zone[data-zone="9"].armed {
-  background-image: url("../images/zones/9. office.png");
+  background-image:
+    url("../images/zones/9. office.png");
 }
 
 .zone[data-zone="9"].armed::after {
@@ -244,7 +272,8 @@ html, body {
    =============================== */
 
 .zone[data-zone="10"].armed {
-  background-image: url("../images/zones/10. storage.png");
+  background-image:
+    url("../images/zones/10. storage.png");
 }
 
 .zone[data-zone="10"].armed::after {
@@ -273,7 +302,12 @@ html, body {
 
   padding: 8px 6px;
 
-  background-color: var(--zone-strip-color, rgba(0, 0, 0, 0.82));
+  background-color:
+    var(
+      --zone-strip-color,
+      rgba(0, 0, 0, 0.82)
+    );
+
   color: #ffffff;
 
   font-size: 14px;
@@ -295,19 +329,583 @@ html, body {
 .zone[data-zone="8"].armed[style*="--zone-strip-color"]::after,
 .zone[data-zone="9"].armed[style*="--zone-strip-color"]::after,
 .zone[data-zone="10"].armed[style*="--zone-strip-color"]::after {
-  animation: alarm-strip-flicker 0.7s infinite;
+  animation:
+    alarm-strip-flicker 0.7s infinite;
 }
 
 @keyframes alarm-strip-flicker {
+
   0%,
   100% {
     background-color: #ff0000;
-    box-shadow: 0 0 14px rgba(255, 0, 0, 0.95);
+
+    box-shadow:
+      0 0 14px rgba(255, 0, 0, 0.95);
   }
 
   50% {
     background-color: #650000;
-    box-shadow: 0 0 3px rgba(255, 0, 0, 0.25);
+
+    box-shadow:
+      0 0 3px rgba(255, 0, 0, 0.25);
+  }
+}
+
+/* ==================================================
+   SECURITY MONITORING PANEL
+   ================================================== */
+
+#monitoring-panel {
+  grid-column: 1 / -1;
+
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  min-width: 0;
+
+  box-sizing: border-box;
+
+  background-color: #05080c;
+
+  border:
+    1px solid rgba(0,180,255,0.55);
+
+  border-radius: 8px;
+
+  box-shadow:
+    0 0 12px rgba(0,180,255,0.28),
+    inset 0 0 24px rgba(0,0,0,0.75);
+
+  overflow: hidden;
+}
+
+/* ==================================================
+   MONITOR BODY
+   Radar left / System Monitor right
+   ================================================== */
+
+.monitor-body {
+  display: grid;
+
+  grid-template-columns:
+    210px
+    minmax(330px, 480px)
+    minmax(0, 1fr);
+
+  column-gap: 70px;
+
+  align-items: center;
+
+  width: 100%;
+  box-sizing: border-box;
+
+  padding: 24px 38px 20px;
+}
+
+/* ===============================
+   RADAR SECTION
+   =============================== */
+
+.radar-section {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  justify-self: start;
+
+  width: 180px;
+  min-width: 0;
+}
+
+.radar-display {
+  position: relative;
+
+  width: 130px;
+  height: 130px;
+
+  flex-shrink: 0;
+
+  border:
+    1px solid rgba(0,255,136,0.75);
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(0,255,136,0.08) 0%,
+      rgba(0,255,136,0.03) 55%,
+      rgba(0,0,0,0.55) 100%
+    );
+
+  box-shadow:
+    0 0 14px rgba(0,255,136,0.25),
+    inset 0 0 18px rgba(0,255,136,0.08);
+
+  overflow: hidden;
+}
+
+/* ===============================
+   RADAR RINGS
+   =============================== */
+
+.radar-ring {
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  border:
+    1px solid rgba(0,255,136,0.24);
+
+  border-radius: 50%;
+
+  transform:
+    translate(-50%, -50%);
+}
+
+.radar-ring-1 {
+  width: 40px;
+  height: 40px;
+}
+
+.radar-ring-2 {
+  width: 78px;
+  height: 78px;
+}
+
+.radar-ring-3 {
+  width: 108px;
+  height: 108px;
+}
+
+/* ===============================
+   RADAR CROSSHAIR
+   =============================== */
+
+.radar-horizontal {
+  position: absolute;
+
+  top: 50%;
+  left: 0;
+
+  width: 100%;
+  height: 1px;
+
+  background-color:
+    rgba(0,255,136,0.22);
+}
+
+.radar-vertical {
+  position: absolute;
+
+  top: 0;
+  left: 50%;
+
+  width: 1px;
+  height: 100%;
+
+  background-color:
+    rgba(0,255,136,0.22);
+}
+
+/* ===============================
+   RADAR SWEEP
+   =============================== */
+
+.radar-sweep {
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  width: 56px;
+  height: 2px;
+
+  background-color: #00ff88;
+
+  transform-origin: left center;
+
+  box-shadow:
+    0 0 8px rgba(0,255,136,0.9);
+
+  animation:
+    radar-scan 4s linear infinite;
+}
+
+@keyframes radar-scan {
+
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ===============================
+   RADAR CENTRE
+   =============================== */
+
+.radar-center {
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  width: 7px;
+  height: 7px;
+
+  background-color: #00ff88;
+
+  border-radius: 50%;
+
+  transform:
+    translate(-50%, -50%);
+
+  box-shadow:
+    0 0 10px #00ff88;
+}
+
+/* ===============================
+   RADAR SENSOR POINTS
+   =============================== */
+
+.radar-dot {
+  position: absolute;
+
+  width: 5px;
+  height: 5px;
+
+  background-color: #00ff88;
+
+  border-radius: 50%;
+
+  box-shadow:
+    0 0 7px #00ff88;
+}
+
+.dot-1 {
+  top: 25px;
+  left: 76px;
+}
+
+.dot-2 {
+  top: 47px;
+  left: 36px;
+}
+
+.dot-3 {
+  top: 82px;
+  left: 88px;
+}
+
+.dot-4 {
+  top: 96px;
+  left: 53px;
+}
+
+.radar-label {
+  margin-top: 9px;
+
+  color: #00ff88;
+
+  font-size: 10px;
+  font-weight: 700;
+
+  letter-spacing: 0.12em;
+
+  text-align: center;
+
+  text-shadow:
+    0 0 5px rgba(0,255,136,0.55);
+}
+
+/* ==================================================
+   SYSTEM MONITOR INFORMATION
+   ================================================== */
+
+.monitor-information {
+  justify-self: start;
+
+  width: 100%;
+  max-width: 480px;
+
+  min-width: 0;
+
+  box-sizing: border-box;
+}
+
+.monitor-information h3 {
+  margin: 0 0 16px 0;
+
+  color: #00bfff;
+
+  font-size: 17px;
+  font-weight: 700;
+
+  letter-spacing: 0.1em;
+
+  text-transform: uppercase;
+
+  text-shadow:
+    0 0 6px rgba(0,191,255,0.3);
+}
+
+/* ===============================
+   MONITOR ROWS
+   =============================== */
+
+.monitor-row {
+  display: grid;
+
+  grid-template-columns:
+    180px minmax(0, 1fr);
+
+  align-items: center;
+
+  column-gap: 24px;
+
+  min-height: 27px;
+
+  padding: 3px 0;
+
+  border-bottom:
+    1px solid rgba(255,255,255,0.08);
+
+  box-sizing: border-box;
+}
+
+.monitor-label {
+  color: #8d98a8;
+
+  font-size: 11px;
+  font-weight: 600;
+
+  letter-spacing: 0.08em;
+}
+
+.monitor-value {
+  color: #eaeaea;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  white-space: nowrap;
+}
+
+.monitor-secure {
+  color: #00ff88;
+
+  text-shadow:
+    0 0 5px rgba(0,255,136,0.5);
+}
+
+/* ==================================================
+   MONITOR FOOTER
+   ================================================== */
+
+.monitor-footer {
+  position: static;
+
+  width: 100%;
+
+  box-sizing: border-box;
+
+  margin: 0;
+
+  padding: 9px 12px;
+
+  text-align: center;
+
+  border-top:
+    1px solid rgba(0,180,255,0.42);
+
+  background-color:
+    rgba(0,0,0,0.38);
+
+  color: #00bfff;
+
+  font-size: 10px;
+  font-weight: 700;
+
+  letter-spacing: 0.22em;
+
+  text-shadow:
+    0 0 6px rgba(0,191,255,0.35);
+}
+
+/* ==================================================
+   MONITORING PANEL – NORMAL
+   ================================================== */
+
+#monitoring-panel.monitor-state-normal
+.radar-display {
+  border-color:
+    rgba(0,255,136,0.75);
+}
+
+#monitoring-panel.monitor-state-normal
+.radar-sweep,
+
+#monitoring-panel.monitor-state-normal
+.radar-center,
+
+#monitoring-panel.monitor-state-normal
+.radar-dot {
+  background-color: #00ff88;
+}
+
+/* ==================================================
+   ENTRY DELAY – AMBER WARNING
+   ================================================== */
+
+#monitoring-panel.monitor-state-warning {
+  border-color:
+    rgba(255,213,79,0.8);
+
+  box-shadow:
+    0 0 17px rgba(255,213,79,0.4),
+    inset 0 0 20px rgba(0,0,0,0.7);
+}
+
+#monitoring-panel.monitor-state-warning
+.radar-display {
+  border-color: #ffd54f;
+
+  box-shadow:
+    0 0 18px rgba(255,213,79,0.6),
+    inset 0 0 18px rgba(255,213,79,0.1);
+}
+
+#monitoring-panel.monitor-state-warning
+.radar-ring {
+  border-color:
+    rgba(255,213,79,0.35);
+}
+
+#monitoring-panel.monitor-state-warning
+.radar-horizontal,
+
+#monitoring-panel.monitor-state-warning
+.radar-vertical {
+  background-color:
+    rgba(255,213,79,0.3);
+}
+
+#monitoring-panel.monitor-state-warning
+.radar-sweep,
+
+#monitoring-panel.monitor-state-warning
+.radar-center,
+
+#monitoring-panel.monitor-state-warning
+.radar-dot {
+  background-color: #ffd54f;
+
+  box-shadow:
+    0 0 10px rgba(255,213,79,0.95);
+}
+
+#monitoring-panel.monitor-state-warning
+.radar-label,
+
+#monitoring-panel.monitor-state-warning
+#monitor-status,
+
+#monitoring-panel.monitor-state-warning
+#monitor-mode {
+  color: #ffd54f;
+
+  text-shadow:
+    0 0 7px rgba(255,213,79,0.7);
+}
+
+/* ==================================================
+   CONFIRMED ALARM – RED
+   ================================================== */
+
+#monitoring-panel.monitor-state-alarm {
+  border-color:
+    rgba(255,0,0,0.9);
+
+  box-shadow:
+    0 0 22px rgba(255,0,0,0.55),
+    inset 0 0 22px rgba(255,0,0,0.08);
+
+  animation:
+    monitor-alarm-pulse 0.8s infinite;
+}
+
+#monitoring-panel.monitor-state-alarm
+.radar-display {
+  border-color: #ff0000;
+
+  box-shadow:
+    0 0 22px rgba(255,0,0,0.75),
+    inset 0 0 18px rgba(255,0,0,0.1);
+}
+
+#monitoring-panel.monitor-state-alarm
+.radar-ring {
+  border-color:
+    rgba(255,0,0,0.4);
+}
+
+#monitoring-panel.monitor-state-alarm
+.radar-horizontal,
+
+#monitoring-panel.monitor-state-alarm
+.radar-vertical {
+  background-color:
+    rgba(255,0,0,0.35);
+}
+
+#monitoring-panel.monitor-state-alarm
+.radar-sweep,
+
+#monitoring-panel.monitor-state-alarm
+.radar-center,
+
+#monitoring-panel.monitor-state-alarm
+.radar-dot {
+  background-color: #ff0000;
+
+  box-shadow:
+    0 0 12px rgba(255,0,0,1);
+}
+
+#monitoring-panel.monitor-state-alarm
+.radar-label,
+
+#monitoring-panel.monitor-state-alarm
+#monitor-status,
+
+#monitoring-panel.monitor-state-alarm
+#monitor-mode {
+  color: #ff0000;
+
+  text-shadow:
+    0 0 8px rgba(255,0,0,0.9);
+}
+
+@keyframes monitor-alarm-pulse {
+
+  0%,
+  100% {
+    box-shadow:
+      0 0 22px rgba(255,0,0,0.6),
+      inset 0 0 22px rgba(255,0,0,0.08);
+  }
+
+  50% {
+    box-shadow:
+      0 0 8px rgba(255,0,0,0.25),
+      inset 0 0 14px rgba(255,0,0,0.04);
   }
 }
 
@@ -317,19 +915,30 @@ html, body {
 
 #system-log {
   flex: 1;
+
   background-color: #272b36;
+
   border-radius: 8px;
+
   padding: 12px;
+
   overflow-y: auto;
-  max-height: calc(100vh - 220px);
-  border: 1px solid rgba(0,180,255,0.3);
+
+  max-height:
+    calc(100vh - 220px);
+
+  border:
+    1px solid rgba(0,180,255,0.3);
 }
 
 /* ===============================
    MOBILE – LANDSCAPE ONLY
    =============================== */
 
-@media (max-width: 480px) and (orientation: landscape) {
+@media
+(max-width: 480px)
+and
+(orientation: landscape) {
 
   body {
     overflow-y: auto;
@@ -337,24 +946,172 @@ html, body {
 
   #main {
     display: grid;
-    grid-template-columns: 1fr 2fr; /* log wider */
+
+    grid-template-columns:
+      1fr 2fr;
+
     gap: 12px;
+
     height: auto;
   }
 
   #zones-area {
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns:
+      repeat(5, 1fr);
+
     gap: 8px;
   }
 
   .zone {
     padding: 6px 4px;
+
     font-size: 11px;
+
     min-height: 42px;
+  }
+
+  #monitoring-panel {
+    grid-column: 1 / -1;
+  }
+
+  .monitor-body {
+    grid-template-columns:
+      150px minmax(220px, 1fr);
+
+    column-gap: 25px;
+
+    padding:
+      15px 18px;
+  }
+
+  .radar-section {
+    width: 140px;
+  }
+
+  .radar-display {
+    width: 100px;
+    height: 100px;
+  }
+
+  .monitor-row {
+    grid-template-columns:
+      100px 1fr;
+
+    column-gap: 10px;
   }
 
   #system-log {
     max-height: none;
+
     font-size: 11px;
   }
+}
+
+/* ==================================================
+   SSA SECURITY DISPLAY – TWO BOX FINAL LAYOUT
+   ================================================== */
+
+#monitoring-panel {
+  grid-column: 1 / -1;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(190px, 0.8fr)
+    minmax(0, 2.2fr);
+
+  gap: 12px;
+
+  width: 100%;
+  min-width: 0;
+
+  box-sizing: border-box;
+
+  background: transparent;
+
+  border: none;
+  border-radius: 0;
+
+  box-shadow: none;
+
+  overflow: visible;
+}
+
+/* ==================================================
+   BOX 1 – LIVE RADAR
+   ================================================== */
+
+.radar-box {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  min-width: 0;
+
+  height: 220px;
+
+  box-sizing: border-box;
+
+  background-color: #05080c;
+
+  border: 1px solid rgba(0, 180, 255, 0.6);
+  border-radius: 8px;
+
+  box-shadow:
+    0 0 12px rgba(0, 180, 255, 0.32),
+    inset 0 0 20px rgba(0, 0, 0, 0.7);
+
+  overflow: hidden;
+}
+
+.radar-section {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+}
+
+/* ==================================================
+   BOX 2 – SECURITY IMAGE
+   ================================================== */
+
+.security-image-box {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  min-width: 0;
+
+  height: 220px;
+
+  box-sizing: border-box;
+
+  background-color: #000;
+
+  border: 1px solid rgba(0, 180, 255, 0.6);
+  border-radius: 8px;
+
+  box-shadow:
+    0 0 12px rgba(0, 180, 255, 0.32);
+
+  overflow: hidden;
+}
+
+.security-monitor-image {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+
+  object-position: center;
+
+  background-color: #000;
 }

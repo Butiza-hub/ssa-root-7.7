@@ -42,6 +42,132 @@ let exitTimer = null;
 let entryTimer = null;
 
 // ===============================
+// AUDIO
+// ===============================
+let audioContext = null;
+let alarmSoundTimer = null;
+
+function ensureAudioReady() {
+  const AudioContextClass =
+    window.AudioContext || window.webkitAudioContext;
+
+  if (!AudioContextClass) {
+    return;
+  }
+
+  if (!audioContext) {
+    audioContext = new AudioContextClass();
+  }
+
+  if (audioContext.state === "suspended") {
+    audioContext.resume();
+  }
+}
+
+function playArmConfirmation() {
+  if (!audioContext) {
+    return;
+  }
+
+  const now = audioContext.currentTime;
+
+  function createSweep(startTime) {
+    const oscillator = audioContext.createOscillator();
+    const gainNode = audioContext.createGain();
+
+    oscillator.type = "square";
+
+    oscillator.frequency.setValueAtTime(
+      900,
+      startTime
+    );
+
+    oscillator.frequency.exponentialRampToValueAtTime(
+      1600,
+      startTime + 0.16
+    );
+
+    gainNode.gain.setValueAtTime(
+      0.07,
+      startTime
+    );
+
+    gainNode.gain.exponentialRampToValueAtTime(
+      0.001,
+      startTime + 0.18
+    );
+
+    oscillator.connect(gainNode);
+    gainNode.connect(audioContext.destination);
+
+    oscillator.start(startTime);
+    oscillator.stop(startTime + 0.18);
+  }
+
+  // Four arming confirmation beeps
+  createSweep(now);
+  createSweep(now + 0.32);
+  createSweep(now + 0.64);
+  createSweep(now + 0.96);
+}
+
+function startAlarmSound() {
+  if (!audioContext || alarmSoundTimer) {
+    return;
+  }
+
+  function playAlarmBeep() {
+    const now = audioContext.currentTime;
+
+    const oscillator = audioContext.createOscillator();
+    const gainNode = audioContext.createGain();
+
+    oscillator.type = "square";
+
+    oscillator.frequency.setValueAtTime(
+      900,
+      now
+    );
+
+    oscillator.frequency.exponentialRampToValueAtTime(
+      1600,
+      now + 0.16
+    );
+
+    gainNode.gain.setValueAtTime(
+      0.07,
+      now
+    );
+
+    gainNode.gain.exponentialRampToValueAtTime(
+      0.001,
+      now + 0.18
+    );
+
+    oscillator.connect(gainNode);
+    gainNode.connect(audioContext.destination);
+
+    oscillator.start(now);
+    oscillator.stop(now + 0.18);
+  }
+
+  // Start immediately when ALARM is confirmed
+  playAlarmBeep();
+
+  // Continue until DISARM
+  alarmSoundTimer = setInterval(() => {
+    playAlarmBeep();
+  }, 320);
+}
+
+function stopAlarmSound() {
+  if (alarmSoundTimer) {
+    clearInterval(alarmSoundTimer);
+    alarmSoundTimer = null;
+  }
+}
+
+// ===============================
 // STATUS INDICATOR
 // ===============================
 const statusIndicator = document.getElementById("status-indicator");
@@ -83,6 +209,90 @@ function updateStatusIndicator(state) {
       statusIndicator.textContent = "UNKNOWN";
       statusIndicator.style.backgroundColor = "#808080";
       statusIndicator.style.color = "#000";
+  }
+
+  updateMonitoringPanel(state);
+}
+
+// ===============================
+// MONITORING PANEL
+// ===============================
+const monitoringPanel = document.getElementById("monitoring-panel");
+const monitorMode = document.getElementById("monitor-mode");
+const monitorZones = document.getElementById("monitor-zones");
+const monitorActive = document.getElementById("monitor-active");
+const monitorStatus = document.getElementById("monitor-status");
+const monitorNetwork = document.getElementById("monitor-network");
+
+function updateMonitoringPanel(state) {
+  // Do not allow the monitoring panel
+  // to interrupt the main SSA system
+  if (
+    !monitoringPanel ||
+    !monitorMode ||
+    !monitorZones ||
+    !monitorActive ||
+    !monitorStatus ||
+    !monitorNetwork
+  ) {
+    return;
+  }
+
+  monitoringPanel.classList.remove(
+    "monitor-state-normal",
+    "monitor-state-warning",
+    "monitor-state-alarm"
+  );
+
+  monitorZones.textContent = "10";
+  monitorNetwork.textContent = "SECURE";
+
+  switch (state) {
+    case SYSTEM_STATES.DISARMED:
+      monitoringPanel.classList.add("monitor-state-normal");
+
+      monitorMode.textContent = "DISARMED";
+      monitorActive.textContent = "0 / 10";
+      monitorStatus.textContent = "STANDBY";
+      break;
+
+    case SYSTEM_STATES.EXIT_DELAY:
+      monitoringPanel.classList.add("monitor-state-normal");
+
+      monitorMode.textContent = "ARMING";
+      monitorActive.textContent = "0 / 10";
+      monitorStatus.textContent = "EXIT DELAY";
+      break;
+
+    case SYSTEM_STATES.ARMED_AWAY:
+      monitoringPanel.classList.add("monitor-state-normal");
+
+      monitorMode.textContent = "ARMED AWAY";
+      monitorActive.textContent = "10 / 10";
+      monitorStatus.textContent = "MONITORING ACTIVE";
+      break;
+
+    case SYSTEM_STATES.ARMED_HOME:
+      monitoringPanel.classList.add("monitor-state-normal");
+
+      monitorMode.textContent = "ARMED HOME";
+      monitorActive.textContent = "6 / 10";
+      monitorStatus.textContent = "MONITORING ACTIVE";
+      break;
+
+    case SYSTEM_STATES.ENTRY_DELAY:
+      monitoringPanel.classList.add("monitor-state-warning");
+
+      monitorMode.textContent = "ALERT";
+      monitorStatus.textContent = "ZONE ACTIVITY DETECTED";
+      break;
+
+    case SYSTEM_STATES.ALARM:
+      monitoringPanel.classList.add("monitor-state-alarm");
+
+      monitorMode.textContent = "ALARM";
+      monitorStatus.textContent = "SECURITY BREACH";
+      break;
   }
 }
 
@@ -256,6 +466,9 @@ function clearTimers() {
 function setDisarmed() {
   clearTimers();
 
+  // Stop continuous alarm sound
+  stopAlarmSound();
+
   systemState = SYSTEM_STATES.DISARMED;
 
   zones.forEach(zone => {
@@ -304,11 +517,12 @@ function setArmedAway() {
 function setArmedHome() {
   systemState = SYSTEM_STATES.ARMED_HOME;
 
+  // Zones disabled while armed in HOME mode
   const HOME_DISABLED_ZONES = [
-    "Zone 4 – Living Room",
-    "Zone 5 – Bedroom",
-    "Zone 6 – Bathroom",
-    "Zone 9 – Office"
+    "4",
+    "5",
+    "6",
+    "9"
   ];
 
   zones.forEach(zone => {
@@ -317,7 +531,7 @@ function setArmedHome() {
     // Ensure strip starts black whenever system is armed
     zone.style.removeProperty("--zone-strip-color");
 
-    if (HOME_DISABLED_ZONES.includes(zone.textContent)) {
+    if (HOME_DISABLED_ZONES.includes(zone.dataset.zone)) {
       zone.classList.add("inactive");
     } else {
       zone.classList.add("armed");
@@ -358,10 +572,13 @@ function startExitDelay(targetState) {
 
     if (remaining <= 0) {
       clearInterval(exitTimer);
+      exitTimer = null;
 
       targetState === SYSTEM_STATES.ARMED_HOME
         ? setArmedHome()
         : setArmedAway();
+
+      playArmConfirmation();
     }
   }, 1000);
 }
@@ -412,7 +629,7 @@ function startEntryDelay(zone) {
 function triggerAlarm(zone) {
   systemState = SYSTEM_STATES.ALARM;
 
-  // Turn the zone-name strip orange
+  // Turn the zone-name strip red
   // at the exact moment the alarm is confirmed
   zone.style.setProperty(
     "--zone-strip-color",
@@ -426,12 +643,17 @@ function triggerAlarm(zone) {
   );
 
   updateStatusIndicator(systemState);
+
+  // Start continuous alarm sound
+  startAlarmSound();
 }
 
 // ===============================
 // EVENT LISTENERS
 // ===============================
 armBtn.addEventListener("click", () => {
+  ensureAudioReady();
+
   if (systemState === SYSTEM_STATES.DISARMED) {
     startExitDelay(
       SYSTEM_STATES.ARMED_AWAY
